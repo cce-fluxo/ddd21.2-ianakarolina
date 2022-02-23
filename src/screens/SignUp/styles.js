@@ -1,10 +1,9 @@
 import styled from "styled-components/native";
 import colors from "../../constants/colors";
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
     flex: 1;
     background-color: ${colors.background};
-    align-items: center;
 `;
 
 export const Logo = styled.Image`
