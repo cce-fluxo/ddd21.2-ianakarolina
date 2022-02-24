@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { 
         Container, 
         Logo, 
@@ -18,6 +18,8 @@ import GoogleButton from '../../components/GoogleButton'
 import {TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView} from 'react-native'
 
 const SignIn = ({fontstyle,textdecoration,marginleft,margintop,navigation}) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigateToCadastro = () => {
         navigation.navigate('SignUp')
     }
@@ -35,12 +37,23 @@ const SignIn = ({fontstyle,textdecoration,marginleft,margintop,navigation}) => {
                 <Container contentContainerStyle={{alignItems:'center'}} showsVerticalScrollIndicator={false}>
                     <Logo resizeMode='contain' source={SilverLogo}/>
                     <Title>Silver Motors</Title>
-                    <Input width={screenWidth*0.8} placeholder='E-mail' margintop={90}/>
-                    <Input width={screenWidth*0.8} placeholder='Senha' margintop={15}/>
+                    <Input value={email} 
+                           onChangeText={(text) => setEmail(text)}
+                           width={screenWidth*0.8} 
+                           placeholder='E-mail' 
+                           margintop={90}
+                           keyboardType='email-address'
+                           autoComlete='email'/>
+                    <Input secureTextEntry 
+                           value={password}
+                           onChangeText={(text) => setPassword(text)}
+                           width={screenWidth*0.8} 
+                           placeholder='Senha' 
+                           margintop={15}/>
                     <SignUpButton marginleft={150} margintop={-15}>
                         <TextButton onPress={navigateToEsqueciSenha} fontstyle={'italic'} textdecoration={'underline'}>Esqueci minha senha</TextButton>
                     </SignUpButton>
-                    <Button text='ENTRAR' width={screenWidth*0.35} height={50} backgroundcolor={'#837F7B'} border={'none'} radius={5} margintop={20}/>
+                    <Button onPress={() => console.log(email,password)} text='ENTRAR' width={screenWidth*0.35} height={50} backgroundcolor={'#837F7B'} border={'none'} radius={5} margintop={20}/>
                     <OrText> ──────── ou ──────── </OrText>
                     <GoogleButton text='GOOGLE' width={screenWidth*0.79} height={35} backgroundcolor={colors.background} border={colors.secundaria} radius={5} margintop={15}/>
                     <GoogleButton text='FACEBOOK' width={screenWidth*0.79} height={35} backgroundcolor={colors.background} border={colors.secundaria} radius={5} margintop={15} />

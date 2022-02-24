@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { 
         Container, 
         Title,
@@ -29,11 +29,31 @@ const SignUp = ({fontsize,fontweight,navigation}) => {
                     <Text fontsize={17} fontweight={'bold'}>Silver Motors ID</Text>
                     <Text fontsize={28} fontweight={'100'}>Registrar</Text>
                     <Text fontsize={15} fontweight={'100'}>Crie sua nova conta Silver Motors</Text>
-                    <Input width={screenWidth*0.8} placeholder='E-mail*' margintop={30}/>
-                    <Input width={screenWidth*0.8} placeholder='Senha*' margintop={13}/>
-                    <Input width={screenWidth*0.8} placeholder='Repetir Senha*' margintop={13}/>
-                    <Input width={screenWidth*0.8} placeholder='CPF*' margintop={13}/>
-                    <Input width={screenWidth*0.8} placeholder='Endereço*' margintop={13}/>
+                    <Input width={screenWidth*0.8} 
+                           placeholder='Nome*' 
+                           margintop={30}
+                           autoCapitalize='words'/>
+                    <Input width={screenWidth*0.8} 
+                           placeholder='E-mail*' 
+                           margintop={13}
+                           keyboardType='email-address'
+                           autoComlete='email'/>
+                    <Input width={screenWidth*0.8} 
+                           placeholder='Senha*' 
+                           margintop={13}
+                           secureTextEntry/>
+                    <Input width={screenWidth*0.8} 
+                           placeholder='Repetir Senha*' 
+                           margintop={13}
+                           secureTextEntry/>
+                    <Input width={screenWidth*0.8} 
+                           placeholder='CPF*' 
+                           margintop={13}
+                           autoComlete='cc-number'/>
+                    <Input width={screenWidth*0.8} 
+                           placeholder='Endereço*' 
+                           margintop={13}
+                           autoComlete='postal-address'/>
                     <Button onPress={navigateToLogin} text='Registrar-se' width={screenWidth*0.67} height={50} backgroundcolor={colors.silverMotors} border={'none'} radius={30} margintop={50} />
                 </Container>
             </TouchableWithoutFeedback>
