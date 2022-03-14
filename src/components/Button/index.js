@@ -1,8 +1,10 @@
 import React from 'react';
+import {ActivityIndicator} from 'react-native'
+import colors from '../../constants/colors'
 
 import {Container, ButtonText} from './styles'
 
-const Button = ({width,height,text,backgroundcolor,radius,margintop,border,onPress}) => {
+const Button = ({width,height,text,backgroundcolor,radius,margintop,border,onPress,loading,disabled}) => {
     return <Container 
                 width={width} 
                 height={height} 
@@ -10,8 +12,9 @@ const Button = ({width,height,text,backgroundcolor,radius,margintop,border,onPre
                 radius={radius} 
                 margintop={margintop} 
                 border={border}
-                onPress={onPress}>
-        <ButtonText>{text}</ButtonText>
+                onPress={onPress}
+                disabled = {disabled || loading}>
+        {loading ? (<ActivityIndicator size={'small'} color={colors.background}/>) : (<ButtonText>{text}</ButtonText>)}
     </Container>
 }
 

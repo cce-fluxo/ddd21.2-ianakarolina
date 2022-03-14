@@ -11,6 +11,7 @@ export const Container = styled.TouchableOpacity`
     border-radius:  ${props=>props.radius}px;
     margin-top: ${props=>props.margintop}px;
     border: ${props=>props.border};
+    opacity: ${props=> (props.disabled ? 0.5 : 1)};
 `; 
 
 export const ButtonText = styled.Text`

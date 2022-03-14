@@ -44,6 +44,7 @@ const SignUp = ({fontsize,fontweight,navigation}) => {
         console.log(response.data)
         } catch (err){
             console.log("erro")
+            navigateToLogin()  // LEMBRAR DE COLOCAR ISSO DENTRO DO TRY DEPOIS!!!! 
         }
         setLoading(false);
     };

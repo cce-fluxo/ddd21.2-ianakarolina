@@ -16,6 +16,7 @@ import {screenHeight, screenWidth} from '../../constants/dimensions'
 import colors from '../../constants/colors'
 import GoogleButton from '../../components/GoogleButton'
 import {TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, ActivityIndicator} from 'react-native'
+
 // import api from '../../services/api'
 
 const SignIn = ({fontstyle,textdecoration,marginleft,margintop,navigation}) => {
@@ -30,17 +31,19 @@ const SignIn = ({fontstyle,textdecoration,marginleft,margintop,navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false)
+
     const handleSubmite = async () => {
-        setLoading(true);
         try{
+        setLoading(true);
         const data = {
-            email: email,
-            password: password
+            email,
+            password
         };
-        // const response = await api.post("/login",data);
+        const response = await api.post("/login",data);
         console.log(response.data)
         } catch (err){
-            console.log("erro")
+            // console.log("erro")
+            console.log(error.response.data.Error)
         }
         setLoading(false);
     };
@@ -69,7 +72,8 @@ const SignIn = ({fontstyle,textdecoration,marginleft,margintop,navigation}) => {
                            placeholder='E-mail' 
                            margintop={90}
                            keyboardType='email-address'
-                           autoComlete='email'/>
+                           autoComplete='email'
+                        />
                     <Input secureTextEntry 
                            value={password}
                            onChangeText={(text) => setPassword(text)}
@@ -79,14 +83,16 @@ const SignIn = ({fontstyle,textdecoration,marginleft,margintop,navigation}) => {
                     <SignUpButton marginleft={150} margintop={-15}>
                         <TextButton onPress={navigateToEsqueciSenha} fontstyle={'italic'} textdecoration={'underline'}>Esqueci minha senha</TextButton>
                     </SignUpButton>
-                    <Button onPress={handleSubmite}
-                            text='ENTRAR' 
+                    <Button text='ENTRAR'  
+                            onPress={handleSubmite}
                             width={screenWidth*0.35} 
                             height={50} 
                             backgroundcolor={'#837F7B'} 
                             border={'none'} 
                             radius={5} 
-                            margintop={20}/>
+                            margintop={20}
+                            loading={loading}
+                            disabled={email === '' ? true : password === '' ? true : false}/>
                     <OrText> ──────── ou ──────── </OrText>
                     <GoogleButton text='GOOGLE' 
                                   width={screenWidth*0.79} 
